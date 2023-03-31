@@ -1,11 +1,22 @@
 pipeline {
     agent any
+
+    environment {
+        DOCKERHUB_CREDENTIALS= credentials('manudocker')
+    }
     
     stages {
 
         stage ('build the docker image') {
             steps {
                 sh 'docker build -t yannmanux/furniture .'
+            }
+        }
+
+        stage ('login to dockerhub') {
+            steps {
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW |  docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                   echo 'login completed'
             }
         }
     }
