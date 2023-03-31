@@ -19,5 +19,11 @@ pipeline {
                    echo 'login completed'
             }
         }
-    }
+    
+        stage ('push the image into dockerhub') {
+            steps {
+                sh ' docker push yannmanux/furniture'
+            }
+        }
+    }  
 }
