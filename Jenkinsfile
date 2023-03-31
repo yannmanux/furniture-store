@@ -5,7 +5,7 @@ pipeline {
 
         stage ('build the docker image') {
             steps {
-                sh 'docker build -t yannmanux/furniture'
+                sh 'docker build -t yannmanux/furniture .'
             }
         }
     }
