@@ -1,4 +1,5 @@
-pipeline {
+pipeline { 
+
     agent any
 
     environment {
@@ -18,7 +19,7 @@ pipeline {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW |  docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                    echo 'login completed'
             }
-
+        }
     
         stage ('push the image into dockerhub') {
             steps {
@@ -26,9 +27,13 @@ pipeline {
             }
         }
     } 
+
     post {
+
         always {
             sh 'docker logout'
         }
     } 
+
 }
+
